@@ -4,7 +4,7 @@ create table dept (
     dept_area VARCHAR(255)
 );
 
-insert into dept values
+insert into dept (dept_id, dept_name, dept_area) values
     (10,"system","tokyo"),
     (20,"system","osaka"),
     (30,"sales","LA"),
