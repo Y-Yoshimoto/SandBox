@@ -1,4 +1,7 @@
 # PostgreSQL
+
+この文章ではPostgreSQLの基本的な使い方と、このディレクトリ内のファイルについて説明する。
+
 ## 起動
 ```bash
 systemctl start postgresql
