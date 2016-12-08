@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     error=deviation/sqrt((double)Bin);
     double gap=average-M_PI/4.0;
     FILE *fp;
-    fp=fopen("Result.dat","w");
+    fp=fopen("Result.bat","w");
     //printf("%.10lf %.10lf %.10lf %.10lf %.10lf",average,deviation,error,M_PI/4.0,gap);
     fprintf(fp,"%.10lf %.10lf %.10lf %.10lf %.10lf",average,deviation,error,M_PI/4.0,gap);
     fclose(fp);

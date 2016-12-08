@@ -22,5 +22,5 @@ set style fill solid
 #プロット
 plot "Hist.dat" using 1:2:2\
 with boxes lw 2 linecolor palette notitle,\
-"Result.dat" using 1:1:2 with xerrorbars axes x1y2 lw 6 ps 3 lc rgb "#D93448"
+"Result.bat" using 1:1:2 with xerrorbars axes x1y2 lw 6 ps 3 lc rgb "#D93448"
 set output
