@@ -1,11 +1,3 @@
-//
-//  Module.h
-//  P4_1
-//
-//  Created by 吉本雄介 on 2015/07/01.
-//  Copyright (c) 2015年 吉本雄介. All rights reserved.
-//
-
 #ifndef P4_1_Module_h
 #define P4_1_Module_h
 
