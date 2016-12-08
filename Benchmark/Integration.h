@@ -23,19 +23,6 @@ void Output_hist(double *hist)
     }
     fclose(fp);
 }
-
-double S_A(uint64_t *array,int *k)
-{
-    int i;
-    double Sum=0.0;
-    for (i = 0 ; i < 12 ; i++){
-    Sum+=sfmt_to_res53(array[*k]);
-    *k=*k+1;
-    //printf("%d\n",*k);
-    }
-    return (Sum/12.0-6.0);
-}
-
 void MCStep(double *average,double *sum_of_squares,double *hist)
 {
     double a=0,s=0;
