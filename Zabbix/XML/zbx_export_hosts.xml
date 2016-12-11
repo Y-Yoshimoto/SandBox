@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.2</version>
-    <date>2016-12-08T17:25:46Z</date>
+    <date>2016-12-11T10:47:46Z</date>
     <groups>
         <group>
             <name>Linux servers</name>
@@ -27,15 +27,6 @@
             <templates>
                 <template>
                     <name>Template App HTTP Service</name>
-                </template>
-                <template>
-                    <name>Template App MySQL</name>
-                </template>
-                <template>
-                    <name>Template App SSH Service</name>
-                </template>
-                <template>
-                    <name>Template ICMP Ping</name>
                 </template>
                 <template>
                     <name>Template OS Linux</name>
@@ -67,13 +58,13 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>system.run[chronyc tracking|grep &quot;Last offset&quot;|awk '{print $4}']</key>
-                    <delay>720</delay>
+                    <delay>300</delay>
                     <history>7</history>
                     <trends>30</trends>
                     <status>0</status>
-                    <value_type>3</value_type>
+                    <value_type>0</value_type>
                     <allowed_hosts/>
-                    <units/>
+                    <units>s</units>
                     <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
@@ -97,7 +88,7 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>General</name>
+                            <name>Zabbix agent</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -111,4 +102,38 @@
             <inventory/>
         </host>
     </hosts>
+    <graphs>
+        <graph>
+            <name>Chronyc_trackingG</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>0</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>1A7C11</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Wan</host>
+                        <key>system.run[chronyc tracking|grep &quot;Last offset&quot;|awk '{print $4}']</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
 </zabbix_export>
