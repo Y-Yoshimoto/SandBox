@@ -1,0 +1,12 @@
+virt-install \
+--name WebAP1 \
+--ram 640 \
+--disk path=/media/y-yoshimoto/KVM128G/WebAP1.img,size=20G,format=raw\
+--vcpus 1 \
+--os-type linux \
+--os-variant rhel7 \
+--network bridge=br0 \
+--graphics none \
+--console pty,target_type=serial \
+--location '/home/y-yoshimoto/Downloads/CentOS-7-x86_64-Minimal-1511.iso' \
+--extra-args 'console=ttyS0,115200n8 serial'
