@@ -1,3 +1,4 @@
+#!/bin/sh
 virt-clone  \
 --original WebAP1 \
 --name WebAP2 \

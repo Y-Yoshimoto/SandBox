@@ -1,3 +1,4 @@
+#!/bin/sh
 #qemu-img create -f qcow2 WebAP1.qcow2 5G
 virt-install \
 --name WebAP1 \
