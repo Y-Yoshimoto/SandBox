@@ -39,6 +39,13 @@ psql -d testdb -U test
 データベースのユーザー名とOSのユーザー名が同じ場合はオプション無しでデータベース名だけを指定してログインできる。
 
 ## テーブルの作成と表示と削除
+テーブルの表示
+```sql
+\d
+
+```
+テーブルの作成と削除
+
 ```sql
 create table test ( no int,name text );
 insert into test (no,name) values (1,'cent');
