@@ -62,5 +62,5 @@ pg_dump testdb > dumpfile
 ```
 testdbの復元は、
 ```bash
-pg_dump testdb > dumpfile
+pg_dump testdb < dumpfile
 ```
