@@ -25,5 +25,5 @@ virsh autostart --disable CentOS7 #解除
 
 仮想マシンへの接続
 ```bash
-virsh console CentOS7 
+virsh console CentOS7
 ```

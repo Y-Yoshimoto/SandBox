@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/* CSS Document */
+body{
+	font-family: -apple-system, 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', '游ゴシック Medium', 'メイリオ', sans-serif;
+	background-color: #FFFFFF;
+	color: #2E2F31
+}
+/* 見出し部分*/
+h1 {
+	font-size: 26px;
+}
+h2 {
+	font-size: 22px;
+}
+h3 {
+	font-size: 18px;
+}
+/*強調タグ*/
+em {
+	color: #007EB1;
+	font-style: normal;
+	font-weight: bold;
+}
+strong {
+	color: #C22047;
+	font-weight: bold;
+}
+/*コード部分*/
+code {
+	
+}
+pre {
+	padding : 0px 0px;
+	background-color: #5A636E;
+	color: #FAFAFA
+}
+/*表の部分*/
+table, td,th {
+	border-collapse: collapse;
+	border: 2px #2E2F31 solid;
+}
+th {
+	background-color: #5A636E;
+	color: #FAFAFA
+}
+
+
+@media (min-width: 1024px){
+	pre {
+	margin : 0px 30px ;
+	}
+	
+}
+
+@media (min-width: 415px) and (max-width: 1023px){
+	pre {
+	margin : 0px 20px ;
+	}
+}
+
+@media (max-width: 414px){
+	pre {
+	margin : 0px 10px ;
+	}
+	
+}
+
