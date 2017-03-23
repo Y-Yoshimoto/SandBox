@@ -1,0 +1,6 @@
+Wait '#'
+Sendln './Alldate.sh'
+for i 1 50
+Wait ':'
+Sendln SSH_PASS
+next
