@@ -30,6 +30,12 @@ local   all         all              md5
 ```
 変更したらサービスのリスタートを行う
 
+### 作成済みユーザーにスーパーユーザー権限を付与剥奪する
+``` sql
+ALTER ROLE "ユーザ名" WITH SUPERUSER;
+ALTER ROLE "ユーザ名" WITH NOSUPERUSER;
+```
+
 
 ## ログインする
 ```bash
