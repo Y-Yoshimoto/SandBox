@@ -52,6 +52,10 @@ insert into test (no,name) values (1,'cent');
 select * from test;
 drop table test;
 ```
+## ファイルからの読み込み
+```sql
+\i (ファイル名)
+```
 
 ## バックアップと復元
 ###論理バックアップ
