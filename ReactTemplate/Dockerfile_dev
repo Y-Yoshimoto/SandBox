@@ -1,0 +1,59 @@
+# Yarnインストールコンテナ
+FROM node:23-bookworm-slim
+LABEL maintaner='y-yoshimoto'
+# アプリケーションディレクトリ名指定
+ARG APPNAME=app
+# 環境変数を設定する
+ENV NODE_ENV=development
+
+# # aptパッケージインストール/日本語環境設定
+RUN apt-get update \
+    && apt-get install -y git curl zip jq locales fonts-noto fonts-noto-cjk \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && locale-gen ja_JP.UTF-8 \
+    && echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
+# playwrightの依存パッケージインストール
+RUN npx playwright install-deps
+
+# Init ファイルの生成(コンテナ起動時にnpm install)
+ARG ENTRYPOINT_LOCKFILE="/${APPNAME}/.npm.lock"
+RUN echo ${ENTRYPOINT_LOCKFILE}
+RUN mkdir -p /usr/bin/ \
+    && echo '#!/bin/bash' > /usr/bin/docker-entrypoint.sh \
+    && echo 'echo "Start Setup."' >> /usr/bin/docker-entrypoint.sh \
+    && echo 'touch '${ENTRYPOINT_LOCKFILE} >> /usr/bin/docker-entrypoint.sh \
+    && echo 'date +"%Y/%m/%d %H:%M:%S" >> '${ENTRYPOINT_LOCKFILE}' && id >> '${ENTRYPOINT_LOCKFILE} >> /usr/bin/docker-entrypoint.sh \
+    && echo 'npm install --include=dev' >> /usr/bin/docker-entrypoint.sh \
+    # && echo 'npx playwright install --with-deps chromium chromium-headless-shell' >> /usr/bin/docker-entrypoint.sh \
+    && echo 'npx playwright install chromium chromium-headless-shell webkit' >> /usr/bin/docker-entrypoint.sh \
+    && echo 'rm '${ENTRYPOINT_LOCKFILE} >> /usr/bin/docker-entrypoint.sh \
+    && echo 'echo "End Setup."'>> /usr/bin/docker-entrypoint.sh \
+    && echo 'exec "$@"' >> /usr/bin/docker-entrypoint.sh \
+    && chmod +x /usr/bin/docker-entrypoint.sh
+# vite, vitestのコマンドエイリアス追加
+RUN echo "alias vitest='/app/node_modules/vitest/vitest.mjs'" >> /etc/bash.bashrc \
+    && echo "alias vite='/app/node_modules/vite/bin/vite.js'" >> /etc/bash.bashrc \
+    && echo "alias playwright='/app/node_modules/playwright/cli.js'" >> /etc/bash.bashrc
+
+# 開発コンテナ実行ユーザー追加(nodeユーザーとIDが一致する場合はユーザー名を変更する)
+ARG USERNAME=vscode
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+RUN useradd -m -s /bin/bash -u $USER_ID -g $GROUP_ID $USERNAME || usermod -l $USERNAME node \
+    && usermod -a -G $GROUP_ID $USERNAME
+
+# アプリケーション, vscodeディレクトリ作成/権限変更
+RUN mkdir -p /$APPNAME/ 
+RUN chown $USERNAME:dialout /$APPNAME/ \
+    && chown $USERNAME:dialout /$APPNAME/.* \
+    && mkdir -p /vscode/vscode-server/ \
+    && chown $USERNAME:dialout /vscode/vscode-server/ \
+    && chown $USERNAME:dialout /vscode/vscode-server/.*
+WORKDIR /$APPNAME
+
+# 公開ポート設定
+EXPOSE 5173 4173 9323
+
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
+CMD ["tail", "-f", "/dev/null"]

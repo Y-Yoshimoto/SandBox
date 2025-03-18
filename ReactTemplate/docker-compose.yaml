@@ -1,0 +1,39 @@
+services:
+  # Portal React アプリケーション
+  react:
+    image: react
+    build:
+      context: ./
+      dockerfile: Dockerfile_dev
+      # コンテナ内のユーザーIDとグループIDを指定
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"  # ここでユーザーとグループを指定
+    # ports:
+    #   - "5173:5173"
+    #   - "4137:4137"
+    #   - "9323:9323"
+    # restart: always
+    environment:
+      - TZ=${TZ}${TZ:-Asia/Tokyo}
+      - UID=${USER_ID:-1000}
+      - GID=${GROUP_ID:-1000}
+    # stdin_open: true
+    # 開発用にソースコードをマウント
+    volumes:
+      - ./:/app/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+# ビルド後のWebコンテンツをNginxで配信
+#   react_prod:
+#     image: nginx
+#     build:
+#       context: ./
+#       dockerfile: Dockerfile_prod
+#     ports:
+#       - "8080:80"
+#     depends_on:
+#       - react
+#     # restart: always
+#     environment:
+#       - TZ=${TZ}

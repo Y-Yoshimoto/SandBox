@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "Chrome",
+            "request": "launch",
+            "preLaunchTask": "npm-dev",
+            "url": "http://127.0.0.1:5173",
+            "webRoot": "${workspaceFolder}",
+            "postDebugTask": "stop-debug"
+        },
+        {
+            "type": "chrome",
+            "name": "Chrome-noCORS",
+            "request": "launch",
+            "preLaunchTask": "npm-dev",
+            "url": "http://127.0.0.1:5173",
+            "webRoot": "${workspaceFolder}",
+            "runtimeArgs": [
+                "--disable-web-security"
+            ],
+            "postDebugTask": "stop-debug"
+        },
+    ]
+}
